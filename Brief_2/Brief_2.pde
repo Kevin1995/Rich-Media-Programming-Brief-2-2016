@@ -1,19 +1,23 @@
-import org.openkinect.*; 
-import org.openkinect.processing.*;
+import SimpleOpenNI.*; 
+SimpleOpenNI context;
 
-// Kinect Library object 
-Kinect kinect;
-
-void setup() { 
-  size(640, 480);
-  kinect = new Kinect(this); 
-  kinect.start();
-  kinect.enableRGB(true); 
+void setup(){ 
+context = new SimpleOpenNI(this); 
+// enable depthMap generation 
+context.enableDepth(); 
+// enable camera image generation
+context.enableRGB(); 
+background(200,0,0); 
+// set the size of the canvas to the actual kinect image data
+// which is actually 640x480 
+size(context.depthWidth() + context.rgbWidth() + 10, context.rgbHeight()); 
 }
 
-void draw(){ 
-  PImage img = kinect.getVideoImage(); 
-  image(img,0,0); 
+void draw(){
+// update the cam 
+context.update();
+// draw depthImageMap 
+image(context.depthImage(),0,0);
+// draw camera 
+image(context.rgbImage(),context.depthWidth() + 10,0); 
 }
-
-
