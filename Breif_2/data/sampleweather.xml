@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<current>
+     <city id="2965353" name="Cluain Meala">
+          <coord lat="52.35" lon="-7.7"/>
+          <country>IE</country>
+          <sun rise="2016-10-12T06:51:47" set="2016-10-12T17:41:31"/>
+     </city>
+     <temperature max="283.802" min="283.802" unit="kelvin" value="283.802"/>
+     <humidity unit="%" value="82"/>
+     <pressure unit="hPa" value="1021.14"/>
+     <wind>
+          <speed name="Gentle Breeze" value="4.36"/>
+          <gusts/>
+          <direction code="E" name="East" value="81.0002"/>
+     </wind>
+     <clouds name="broken clouds" value="76"/>
+     <visibility/>
+     <precipitation mode="no"/>
+     <weather icon="04n" number="803" value="broken clouds"/>
+     <lastupdate value="2016-10-12T05:28:48"/>
+</current>
