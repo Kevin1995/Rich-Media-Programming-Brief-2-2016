@@ -2,17 +2,17 @@ import processing.video.*;
 
 Capture cam;
 
-String Dublin = "http://api.openweathermap.org/data/2.5/weather?q=Dublin&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
+String Aziziya = "http://api.openweathermap.org/data/2.5/weather?q=Aziziya&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 String Washington = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 String Helsinki = "http://api.openweathermap.org/data/2.5/weather?q=Helsinki&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 String Canberra = "http://api.openweathermap.org/data/2.5/weather?q=Canberra&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 
-String locationDublinNode;
+String locationAziziyaNode;
 String locationWashingtonNode;
 String locationHelsinkiNode;
 String locationCanberraNode;
 
-int temperatureInDublin;
+int temperatureInAziziya;
 int temperatureInWashington;
 int temperatureInHelsinki;
 int temperatureInCanberra;
@@ -38,32 +38,32 @@ void setup() {
     
     String apiKey = getAPIKey();
     
-    Dublin = Dublin.replace("APIKEY", apiKey);
+    Aziziya = Aziziya.replace("APIKEY", apiKey);
     Washington = Washington.replace("APIKEY", apiKey);
     Helsinki = Helsinki.replace("APIKEY", apiKey);
     Canberra = Canberra.replace("APIKEY", apiKey);
     
-    XML DublinxmlResponse = loadXML(Dublin);
+    XML AziziyaxmlResponse = loadXML(Aziziya);
     XML WashingtonxmlResponse = loadXML(Washington);
     XML HelsinkixmlResponse = loadXML(Helsinki);
     XML CanberraxmlResponse = loadXML(Canberra);
     
-    XML DublinlocationNode = DublinxmlResponse.getChild("city");
+    XML AziziyalocationNode = AziziyaxmlResponse.getChild("city");
     XML WashingtonlocationNode = WashingtonxmlResponse.getChild("city");
     XML HelsinkilocationNode = HelsinkixmlResponse.getChild("city");
     XML CanberralocationNode = CanberraxmlResponse.getChild("city");
     
-    locationDublinNode = DublinlocationNode.getString("name");
+    locationAziziyaNode = AziziyalocationNode.getString("name");
     locationWashingtonNode = WashingtonlocationNode.getString("name");
     locationHelsinkiNode = HelsinkilocationNode.getString("name");
     locationCanberraNode = CanberralocationNode.getString("name");
     
-    XML temperatureDublin = DublinxmlResponse.getChild("temperature");
+    XML temperatureAziziya = AziziyaxmlResponse.getChild("temperature");
     XML temperatureWashington = WashingtonxmlResponse.getChild("temperature");
     XML temperatureHelsinki = HelsinkixmlResponse.getChild("temperature");
     XML temperatureCanberra = CanberraxmlResponse.getChild("temperature");
     
-    temperatureInDublin = (int)(temperatureDublin.getFloat("value")-273.15);
+    temperatureInAziziya = (int)(temperatureAziziya.getFloat("value")-273.15);
     temperatureInWashington = (int)(temperatureWashington.getFloat("value")-273.15);
     temperatureInHelsinki = (int)(temperatureHelsinki.getFloat("value")-273.15);
     temperatureInCanberra = (int)(temperatureCanberra.getFloat("value")-273.15);
@@ -93,10 +93,10 @@ void draw() {
 
   if ((keyPressed == true) && (keyCode == DOWN)) {
 
-    fill(0, temperatureInDublin, 100);
+    fill(0, temperatureInAziziya, 100);
     noStroke();
     
-    float diameter = map(temperatureInDublin, 20, 100, 10, width);
+    float diameter = map(temperatureInAziziya, 20, 100, 10, width);
     rect(width/2, height/2, diameter, diameter);
       
     }
