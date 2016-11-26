@@ -1,6 +1,8 @@
 import processing.video.*;
 
 Capture cam;
+Cloud myClouds;
+
 
 String Aziziya = "http://api.openweathermap.org/data/2.5/weather?q=Aziziya&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 String Washington = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
@@ -12,6 +14,11 @@ String locationWashingtonNode;
 String locationHelsinkiNode;
 String locationCanberraNode;
 
+String locationAziziyaWeatherNode;
+String locationWashingtonWeatherNode;
+String locationHelsinkiWeatherNode;
+String locationCanberraWeatherNode;
+
 int temperatureInAziziya;
 int temperatureInWashington;
 int temperatureInHelsinki;
@@ -19,6 +26,13 @@ int temperatureInCanberra;
 
 void setup() {
   size(640, 480);
+  
+  myClouds = new Cloud();
+  
+  smooth();
+  
+  PFont generalFont = createFont("Ariel", 20, true); // Arial, 20 point, anti-aliasing on
+  textFont(generalFont);
 
   String[] cameras = Capture.list();
   
@@ -68,6 +82,16 @@ void setup() {
     temperatureInHelsinki = (int)(temperatureHelsinki.getFloat("value")-273.15);
     temperatureInCanberra = (int)(temperatureCanberra.getFloat("value")-273.15);
     
+    XML AziziyaWeather = AziziyaxmlResponse.getChild("weather");
+    XML WashingtonWeather = WashingtonxmlResponse.getChild("weather");
+    XML HelsinkiWeather = HelsinkixmlResponse.getChild("weather");
+    XML CanberraWeather = CanberraxmlResponse.getChild("weather");
+    
+    locationAziziyaWeatherNode = AziziyaWeather.getString("value");
+    locationWashingtonWeatherNode = WashingtonWeather.getString("value");
+    locationHelsinkiWeatherNode = HelsinkiWeather.getString("value");
+    locationCanberraWeatherNode = CanberraWeather.getString("value");
+    
     colorMode(HSB, 100);
     
   }      
@@ -82,23 +106,51 @@ void draw() {
   image(cam, 0, 0);
   
   if ((keyPressed == true) && (keyCode == UP)) {
-
-    fill(0, temperatureInHelsinki, 100);
-    noStroke();
     
-    float diameter = map(temperatureInCanberra, 20, 100, 10, width);
-    ellipse(width/2, height/2, diameter, diameter);
-      
+    myClouds.Clouds();
+    
+    color c = color(255, 0, 0);
+    fill(c);
+    textAlign(CENTER);
+    text("Weather in: " + locationCanberraNode, width/2, 20);
+    
+    textAlign(CENTER);
+    text("Weather description: " + locationCanberraWeatherNode, width/2, 60);
+       
     }
-
-  if ((keyPressed == true) && (keyCode == DOWN)) {
-
-    fill(0, temperatureInAziziya, 100);
-    noStroke();
     
-    float diameter = map(temperatureInAziziya, 20, 100, 10, width);
-    rect(width/2, height/2, diameter, diameter);
+    if ((keyPressed == true) && (keyCode == DOWN)) {
       
+    myClouds.Clouds();
+    
+    color c = color(255, 0, 0);
+    fill(c);
+    textAlign(CENTER);
+    text("Weather in: " + locationWashingtonNode, width/2, 20);
+    
+    textAlign(CENTER);
+    text("Weather description: " + locationWashingtonWeatherNode, width/2, 60);
+       
+    }
+    
+    if ((keyPressed == true) && (keyCode == LEFT)) {
+    
+    textAlign(CENTER);
+    text("Weather in: " + locationHelsinkiNode, width/2, 20);
+    
+    textAlign(CENTER);
+    text("Weather description: " + locationHelsinkiWeatherNode, width/2, 60);
+       
+    }
+    
+    if ((keyPressed == true) && (keyCode == RIGHT)) {
+    
+    textAlign(CENTER);
+    text("Weather in: " + locationAziziyaNode, width/2, 20);
+    
+    textAlign(CENTER);
+    text("Weather description: " + locationAziziyaWeatherNode, width/2, 60);
+       
     }
 }
 
