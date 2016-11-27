@@ -1,7 +1,7 @@
 import processing.video.*;
 
 Capture cam;
-Cloud myClouds;
+Scattered_Clouds myClouds;
 
 
 String Aziziya = "http://api.openweathermap.org/data/2.5/weather?q=Aziziya&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
@@ -27,7 +27,7 @@ int temperatureInCanberra;
 void setup() {
   size(640, 480);
   
-  myClouds = new Cloud();
+  myClouds = new Scattered_Clouds();
   
   smooth();
   
@@ -92,7 +92,7 @@ void setup() {
     locationHelsinkiWeatherNode = HelsinkiWeather.getString("value");
     locationCanberraWeatherNode = CanberraWeather.getString("value");
     
-    colorMode(HSB, 100);
+    colorMode(RGB, 100);
     
   }      
 }
