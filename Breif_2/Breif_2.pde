@@ -2,7 +2,9 @@ import processing.video.*;
 
 Capture cam;
 Scattered_Clouds myClouds;
-
+ClearSky mySky;
+Few_Cloud myFewClouds;
+Broken_Cloud myBrokenClouds;
 
 String Aziziya = "http://api.openweathermap.org/data/2.5/weather?q=Aziziya&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
 String Washington = "http://api.openweathermap.org/data/2.5/weather?q=Washington&APPID=d4133a486a98f68a0ec664960ac1c164&mode=xml";
@@ -28,6 +30,9 @@ void setup() {
   size(640, 480);
   
   myClouds = new Scattered_Clouds();
+  mySky = new ClearSky();
+  myFewClouds = new Few_Cloud();
+  myBrokenClouds = new Broken_Cloud();
   
   smooth();
   
@@ -121,7 +126,7 @@ void draw() {
     
     if ((keyPressed == true) && (keyCode == DOWN)) {
       
-    myClouds.Clouds();
+    mySky.ClearSkys();
     
     color c = color(255, 0, 0);
     fill(c);
@@ -134,22 +139,26 @@ void draw() {
     }
     
     if ((keyPressed == true) && (keyCode == LEFT)) {
+      
+      myFewClouds.FewClouds();
     
-    textAlign(CENTER);
-    text("Weather in: " + locationHelsinkiNode, width/2, 20);
+      textAlign(CENTER);
+      text("Weather in: " + locationHelsinkiNode, width/2, 20);
     
-    textAlign(CENTER);
-    text("Weather description: " + locationHelsinkiWeatherNode, width/2, 60);
+      textAlign(CENTER);
+      text("Weather description: " + locationHelsinkiWeatherNode, width/2, 60);
        
     }
     
     if ((keyPressed == true) && (keyCode == RIGHT)) {
+      
+      myBrokenClouds.BrokenCloud();
     
-    textAlign(CENTER);
-    text("Weather in: " + locationAziziyaNode, width/2, 20);
+      textAlign(CENTER);
+      text("Weather in: " + locationAziziyaNode, width/2, 20);
     
-    textAlign(CENTER);
-    text("Weather description: " + locationAziziyaWeatherNode, width/2, 60);
+      textAlign(CENTER);
+      text("Weather description: " + locationAziziyaWeatherNode, width/2, 60);
        
     }
 }
