@@ -1,6 +1,6 @@
 class ClearSky {
   
-  void ClearSkys (){
+  void ClearSkys () {
     
     color c = color(244, 150, 49);  // Define color 'c'
     fill(c);  // Use color variable 'c' as fill color
